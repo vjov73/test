@@ -1,0 +1,6 @@
+tenant_id: tenant_acme
+target: example.com
+allow_active_scan: true
+allowed_ports: [80,443,22]
+redteam_approved: false
+redteam_reference: ""

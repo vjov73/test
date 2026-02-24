@@ -1,0 +1,7 @@
+name: snapshot
+exposure: false
+baseline: false
+subdomain_limit: 5
+tech_deep: false
+ports: []
+redteam: false
