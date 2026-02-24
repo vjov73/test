@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from uuid import uuid4
 
@@ -15,7 +16,8 @@ class SubscriptionManager:
     def __init__(self, queue: QueueAdapter, path: Path | None = None) -> None:
         self.queue = queue
         self.scheduler = BackgroundScheduler()
-        self.path = path or Path("/data/subscriptions.json")
+        data_root = Path(os.getenv("COLDWING_DATA_DIR", "./data")).resolve()
+        self.path = path or (data_root / "subscriptions.json")
         self.subscriptions: dict[str, dict] = {}
 
     def start(self) -> None:

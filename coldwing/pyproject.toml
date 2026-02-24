@@ -28,3 +28,10 @@ build-backend = "setuptools.build_meta"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["coldwing*"]
+exclude = ["docker*", "profiles*", "examples*", "tests*"]

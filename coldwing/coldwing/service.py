@@ -27,8 +27,9 @@ from coldwing.utils.timeutil import utc_now_iso
 
 ProgressCb = Callable[[str, int], None]
 LOGGER = get_logger(__name__)
-DATA_ROOT = Path("/data")
 
+import os
+DATA_ROOT = Path(os.getenv("COLDWING_DATA_DIR", "./data")).resolve()
 
 def _audit_write(scan_dir: Path, event: dict[str, Any]) -> None:
     with open(scan_dir / "audit.jsonl", "a", encoding="utf-8") as f:

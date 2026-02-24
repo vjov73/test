@@ -3,7 +3,9 @@ from __future__ import annotations
 import os
 
 from redis import Redis
-from rq import Connection, Worker, get_current_job
+
+from rq import Worker, Queue
+from rq.job import get_current_job
 
 from coldwing.service import run_scan
 
@@ -25,9 +27,9 @@ def execute_scan(job_spec: dict) -> dict:
 
 
 def run_worker() -> None:
-    with Connection(redis_conn):
-        worker = Worker(["coldwing"])
-        worker.work()
+    q = Queue("coldwing", connection=redis_conn)
+    worker = Worker([q], connection=redis_conn)
+    worker.work()
 
 
 if __name__ == "__main__":

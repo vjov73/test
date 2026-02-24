@@ -8,8 +8,7 @@ from rq import Queue
 from rq.job import Job
 
 from coldwing.queue.adapter import QueueAdapter
-from coldwing.worker.rq_worker import execute_scan
-
+from coldwing.worker.tasks import execute_scan
 
 class RQAdapter(QueueAdapter):
     def __init__(self) -> None:
